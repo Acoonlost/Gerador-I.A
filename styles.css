@@ -1,14 +1,55 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+#topic-input {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#topic {
+    padding: 10px;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+}
+
+button:hover {
+    background-color: #45a049;
 }
 
 #presentation-container {
     max-width: 800px;
-    margin: 50px auto;
+    margin: 20px auto;
+}
+
+.slide {
     background-color: #fff;
     padding: 20px;
+    margin-bottom: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #333;
+}
+
+p {
+    color: #666;
 }
