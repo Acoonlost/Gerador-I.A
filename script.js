@@ -6,7 +6,7 @@ function fetchData() {
     const selectedTopic = document.getElementById("topics").value;
 
     // Use fetch to get data from the API based on the selected topic
-    fetch(`https://api.example.com/presentations?topic=${selectedTopic}`)
+    fetch(`https://jsonplaceholder.typicode.com/posts?userId=${selectedTopic}`)
         .then(response => response.json())
         .then(data => displayData(data))
         .catch(error => console.error("Error fetching data:", error));
