@@ -7,13 +7,10 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="topic-selector">
-        <label for="topics">Escolha o Tópico:</label>
-        <select id="topics" onchange="fetchData()">
-            <option value="topic1">Tópico 1</option>
-            <option value="topic2">Tópico 2</option>
-            <!-- Adicione mais opções conforme necessário -->
-        </select>
+    <div id="topic-input">
+        <label for="topic">Insira o Tópico:</label>
+        <input type="text" id="topic" placeholder="Digite o tópico">
+        <button onclick="fetchData()">Gerar Apresentação</button>
     </div>
 
     <div id="presentation-container"></div>
