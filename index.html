@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Presentation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="topic-selector">
+        <label for="topics">Escolha o Tópico:</label>
+        <select id="topics" onchange="fetchData()">
+            <option value="topic1">Tópico 1</option>
+            <option value="topic2">Tópico 2</option>
+            <!-- Adicione mais opções conforme necessário -->
+        </select>
+    </div>
+
+    <div id="presentation-container"></div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
