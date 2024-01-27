@@ -1,11 +1,17 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetchData();
+    // No need to fetch data on page load, now triggered by button click
 });
 
 function fetchData() {
-    const selectedTopic = document.getElementById("topics").value;
+    const selectedTopic = document.getElementById("topic").value;
 
-    // Use fetch to get data from the API based on the selected topic
+    // Check if the topic input is not empty
+    if (selectedTopic.trim() === "") {
+        alert("Por favor, insira um tópico válido.");
+        return;
+    }
+
+    // Use fetch to get data from the API based on the entered topic
     fetch(`https://jsonplaceholder.typicode.com/posts?userId=${selectedTopic}`)
         .then(response => response.json())
         .then(data => displayData(data))
@@ -25,10 +31,10 @@ function displayData(data) {
         title.textContent = item.title;
 
         const content = document.createElement("p");
-        content.textContent = item.content;
+        content.textContent = item.body;
 
         slide.appendChild(title);
         slide.appendChild(content);
         presentationContainer.appendChild(slide);
     });
-}
+            }
