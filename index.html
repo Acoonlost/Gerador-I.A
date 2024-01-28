@@ -1,110 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Criador de Apresentações Automáticas</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-
-    .slide {
-      display: none;
-      text-align: center;
-      padding: 20px;
-    }
-
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      margin-top: 10px;
-      cursor: pointer;
-    }
-
-    img {
-      max-width: 100%;
-      height: auto;
-    }
-
-    #subjectInput {
-      margin-top: 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slideshow Generator</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-<div>
-  <label for="subjectInput">Escolha o Assunto: </label>
-  <input type="text" id="subjectInput" placeholder="Digite o assunto">
-  <button onclick="startPresentation()">Iniciar Apresentação</button>
-</div>
-
-<div id="presentation">
-  <!-- Slides serão adicionados dinamicamente aqui -->
-</div>
-
-<button onclick="nextSlide()">Próximo</button>
-
-<script>
-  let currentSlide = 0;
-
-  function createSlide(imageUrl) {
-    const newSlide = document.createElement("div");
-    newSlide.className = "slide";
-    newSlide.innerHTML = `<img src="${imageUrl}" alt="Slide ${currentSlide + 1}">`;
-    document.getElementById("presentation").appendChild(newSlide);
-  }
-
-  function showSlide(n) {
-    const slides = document.getElementsByClassName("slide");
-
-    if (n >= slides.length) {
-      currentSlide = slides.length - 1;
-      fetchInformation();
-      return;
-    }
-
-    if (n < 0) {
-      currentSlide = 0;
-    }
-
-    for (let i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-    }
-
-    slides[currentSlide].style.display = "block";
-  }
-
-  function nextSlide() {
-    currentSlide++;
-    showSlide(currentSlide);
-  }
-
-  function startPresentation() {
-    currentSlide = 0;
-    const subjectInput = document.getElementById("subjectInput").value;
-    fetchInformation(subjectInput);
-  }
-
-  function fetchInformation(subject) {
-    // Simula uma requisição para o serviço "Lorem Picsum"
-    const imageUrl = `https://picsum.photos/800/400?random=${currentSlide}&subject=${subject}`;
-
-    // Limpar os slides anteriores
-    document.getElementById("presentation").innerHTML = "";
-
-    // Iniciar apresentação com novo assunto
-    createSlide(imageUrl);
-
-    // Automaticamente avança para o próximo slide
-    setTimeout(() => {
-      nextSlide();
-    }, 1000);  // Adiciona um pequeno atraso para evitar a recursão imediata
-  }
-</script>
-
+    <div class="container">
+        <h1>Slideshow Generator</h1>
+        <form id="user-form">
+            <label for="user-input">Enter slide information:</label>
+            <textarea id="user-input" name="user-input" rows="4" cols="50">
+Head: The head contains the brain, eyes, ears, nose, and mouth.
+Neck: The neck supports the head and connects it to the torso.
+Torso: The torso contains the heart, lungs, and digestive organs.
+Arms: The arms are used for lifting and moving objects.
+Legs: The legs are used for standing, walking, and running.
+</textarea><br>
+            <button type="submit">Create Slideshow</button>
+        </form>
+        <div id="slideshow-container"></div>
+    </div>
+    <script src="scripts.js"></script>
 </body>
 </html>
