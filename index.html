@@ -1,16 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Automatic Presentations</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criador de Apresentações Automáticas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .slide {
+      display: none;
+      text-align: center;
+      padding: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
 </head>
 <body>
-    <div id="presentation-container"></div>
-    <button id="add-slide">Add Slide</button>
-    <button id="download-presentation">Download Presentation</button>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
-    <script src="scripts.js"></script>
+
+<div id="presentation">
+  <!-- Slides serão adicionados dinamicamente aqui -->
+</div>
+
+<button onclick="nextSlide()">Próximo</button>
+
+<script>
+  let currentSlide = 0;
+
+  function createSlide(imageUrl) {
+    const newSlide = document.createElement("div");
+    newSlide.className = "slide";
+    newSlide.innerHTML = `<img src="${imageUrl}" alt="Slide ${currentSlide + 1}">`;
+    document.getElementById("presentation").appendChild(newSlide);
+  }
+
+  function showSlide(n) {
+    const slides = document.getElementsByClassName("slide");
+
+    if (n >= slides.length) {
+      currentSlide = slides.length - 1;
+      fetchInformation();
+      return;
+    }
+
+    if (n < 0) {
+      currentSlide = 0;
+    }
+
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+
+    slides[currentSlide].style.display = "block";
+  }
+
+  function nextSlide() {
+    currentSlide++;
+    showSlide(currentSlide);
+  }
+
+  function fetchInformation() {
+    // Simula uma requisição para o serviço "Lorem Picsum"
+    const imageUrl = `https://picsum.photos/800/400?random=${currentSlide}`;
+
+    createSlide(imageUrl);
+
+    // Automaticamente avança para o próximo slide
+    nextSlide();
+  }
+
+  // Inicia a apresentação com a primeira busca
+  fetchInformation();
+</script>
+
 </body>
 </html>
