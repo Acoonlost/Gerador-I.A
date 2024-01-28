@@ -28,9 +28,19 @@
       max-width: 100%;
       height: auto;
     }
+
+    #subjectInput {
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
+
+<div>
+  <label for="subjectInput">Escolha o Assunto: </label>
+  <input type="text" id="subjectInput" placeholder="Digite o assunto">
+  <button onclick="startPresentation()">Iniciar Apresentação</button>
+</div>
 
 <div id="presentation">
   <!-- Slides serão adicionados dinamicamente aqui -->
@@ -73,18 +83,27 @@
     showSlide(currentSlide);
   }
 
-  function fetchInformation() {
-    // Simula uma requisição para o serviço "Lorem Picsum"
-    const imageUrl = `https://picsum.photos/800/400?random=${currentSlide}`;
+  function startPresentation() {
+    currentSlide = 0;
+    const subjectInput = document.getElementById("subjectInput").value;
+    fetchInformation(subjectInput);
+  }
 
+  function fetchInformation(subject) {
+    // Simula uma requisição para o serviço "Lorem Picsum"
+    const imageUrl = `https://picsum.photos/800/400?random=${currentSlide}&subject=${subject}`;
+
+    // Limpar os slides anteriores
+    document.getElementById("presentation").innerHTML = "";
+
+    // Iniciar apresentação com novo assunto
     createSlide(imageUrl);
 
     // Automaticamente avança para o próximo slide
-    nextSlide();
+    setTimeout(() => {
+      nextSlide();
+    }, 1000);  // Adiciona um pequeno atraso para evitar a recursão imediata
   }
-
-  // Inicia a apresentação com a primeira busca
-  fetchInformation();
 </script>
 
 </body>
